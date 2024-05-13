@@ -1,7 +1,9 @@
-#include <iostream>
+#include "../include/aquarium/aquarium.hpp"
 
 int main() {
-    std::cout << "Hello, Mario!" << '\n';
-    std::cout << "Mordvin_2005" << '\n';
+    Aquarium aquarium;
+    aquarium.Init();
+    aquarium.Run();
+
     return 0;
 }
