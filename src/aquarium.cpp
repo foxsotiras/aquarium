@@ -1,8 +1,9 @@
 #include "../include/aquarium/aquarium.hpp"
 
 void Aquarium::Init() {
-    InitWindow(800, 600, "Aquarium");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Aquarium");
     carp.Init();
+    SetTargetFPS(FPS);
 }
 
 void Aquarium::Run() {
@@ -10,6 +11,7 @@ void Aquarium::Run() {
         BeginDrawing();
         ClearBackground(SKYBLUE);
         carp.Draw();
+        carp.Run();
         EndDrawing();
     }
 

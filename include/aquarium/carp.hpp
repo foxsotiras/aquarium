@@ -1,6 +1,8 @@
 #include "fish.hpp"
 
+#pragma once
+
 class Carp : public Fish {
     public:
-    void Init() override { Fish::Init(0, 0, 50, 50, 5, "assets/carp.png"); }
+    void Init() override { Fish::Init(400, 300, 50, 50, 2, "assets/carp.png"); }
 };

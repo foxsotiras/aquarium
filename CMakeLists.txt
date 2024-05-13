@@ -3,7 +3,6 @@ project(aquarium
         VERSION 0.0.1
         DESCRIPTION "The project aquarium for OOP")
 
-
 if (MSVC)
     # warning level 4
     add_compile_options(/W4)
