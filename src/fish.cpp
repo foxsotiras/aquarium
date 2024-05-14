@@ -3,10 +3,10 @@
 #include <cmath>
 #include <random>
 
-namespace States {
+namespace State {
     unsigned short state = 0;
     unsigned short fps_since_last_change = Aquarium::FPS;
-    enum State { Idle = 0, MoveLeft, MoveForward, MoveRight };
+    enum States { Idle = 0, MoveLeft, MoveForward, MoveRight };
 }
 
 void Fish::Init(float x, float y, int width, int height, float speed, const char* file) {
@@ -23,30 +23,30 @@ void Fish::Init(float x, float y, int width, int height, float speed, const char
 }
 
 void Fish::Draw() {
-    DrawTextureV(m_texture, m_coords, WHITE);
+    DrawTextureEx(m_texture, m_coords, -m_angle * 180 / PI, 1, WHITE);
 }
 
 void Fish::Run() {
-    if (States::fps_since_last_change == Aquarium::FPS) {
+    if (State::fps_since_last_change == Aquarium::FPS) {
         std::random_device rd;
         std::uniform_int_distribution<int> dist(0, 3);
-        States::state = dist(rd);
-        States::fps_since_last_change = 0;
+        State::state = dist(rd);
+        State::fps_since_last_change = 0;
     }
-    switch (States::state) {
-        case States::State::Idle:
+    switch (State::state) {
+        case State::States::Idle:
         break;
-        case States::State::MoveLeft:
+        case State::States::MoveLeft:
         MoveLeft();
         break;
-        case States::State::MoveForward:
+        case State::States::MoveForward:
         MoveForward();
         break;
-        case States::State::MoveRight:
+        case State::States::MoveRight:
         MoveRight();
         break;
     }
-    ++States::fps_since_last_change;
+    ++State::fps_since_last_change;
 }
 
 void Fish::CheckObstacles() {
@@ -63,15 +63,11 @@ void Fish::MoveForward() {
 }
 
 void Fish::MoveLeft() {
-    CheckObstacles();
-    m_angle += PI / 128;
-    m_coords.x += m_speed * cos(m_angle);
-    m_coords.y += m_speed * sin(m_angle);
+    m_angle += PI / 256;
+    MoveForward();
 }
 
 void Fish::MoveRight() {
-    CheckObstacles();
-    m_angle -= PI / 128;
-    m_coords.x += m_speed * cos(m_angle);
-    m_coords.y += m_speed * sin(m_angle);
+    m_angle -= PI / 256;
+    MoveForward();
 }

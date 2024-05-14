@@ -1,5 +1,4 @@
 #include "carp.hpp"
-#include <raylib.h>
 
 #pragma once
 
