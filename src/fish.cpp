@@ -23,7 +23,7 @@ void Fish::Init(float x, float y, int width, int height, float speed, const char
 }
 
 void Fish::Draw() {
-    DrawTextureEx(m_texture, m_coords, -m_angle * 180 / PI, 1, WHITE);
+    DrawTextureV(m_texture, m_coords, WHITE);
 }
 
 void Fish::Run() {
