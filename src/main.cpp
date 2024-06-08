@@ -4,6 +4,7 @@ int main() {
     Aquarium* aquarium = new Aquarium();
     aquarium->Init();
     aquarium->Run();
+    aquarium->Done();
     delete aquarium;
 
     return 0;

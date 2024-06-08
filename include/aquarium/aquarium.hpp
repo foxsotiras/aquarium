@@ -1,16 +1,18 @@
-#include "carp.hpp"
-
 #pragma once
 
-class Aquarium {
-    public:
-    static const unsigned short SCREEN_WIDTH = 800;
-    static const unsigned short SCREEN_HEIGHT = 600;
-    static const unsigned short FPS = 60;
+#include "carp.hpp"
+#include "pike.hpp"
+#include "rock.hpp"
+#include <list>
 
+class Aquarium {
+public:
     void Init();
     void Run();
+    void Done();
 
-    private:
-    Carp carp;
+private:
+    std::list<Rock> rocks;
+    std::list<Carp> carps;
+    std::list<Pike> pikes;
 };

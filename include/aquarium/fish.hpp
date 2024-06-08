@@ -1,24 +1,31 @@
-#include <raylib.h>
-
 #pragma once
 
+#include "rock.hpp"
+#include <list>
+#include <raylib.h>
+
 class Fish {
-    public:
-    virtual void Init() { Fish::Init(0, 0, 30, 30, 0, "assets/error.png"); }
-    void Init(float x, float y, int width, int height, float speed, const char* file);
-    void Draw();
+public:
+    virtual ~Fish();
+
+    virtual void Init() = 0;
+    void Init(float x, float y, int width, int height, float velocity, const char* file);
+    void Draw() const;
     void Run();
-    void CheckObstacles();
+
+    void CheckObstacles(const std::list<Rock>& rocks);
     void MoveForward();
     void MoveLeft();
     void MoveRight();
 
-    void setSpeed(float speed) { m_speed = speed; }
-    void setAngle(float angle) { m_angle = angle; }
+    Rectangle GetHitbox() const;
 
-    protected:
+protected:
     Vector2 m_coords;
-    float m_angle;
     Texture2D m_texture;
-    float m_speed;
+    Rectangle m_hitbox;
+    float m_velocity;
+    float m_angle;
+    unsigned short state{0};
+    unsigned short fps_since_last_change{0};
 };
