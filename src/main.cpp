@@ -1,7 +1,11 @@
-#include <iostream>
+#include "../include/aquarium/aquarium.hpp"
 
 int main() {
-    std::cout << "Hello, Mario!" << '\n';
-    std::cout << "Mordvin_2004" << '\n';
+    Aquarium* aquarium = new Aquarium();
+    aquarium->Init();
+    aquarium->Run();
+    aquarium->Done();
+    delete aquarium;
+
     return 0;
 }
