@@ -6,17 +6,17 @@
 
 void Aquarium::Init() {
     InitWindow(800, 600, "Aquarium");
-    SetTargetFPS(60);
+    SetTargetFPS(75);
 
     Carp carp;
+    carp.Init();
     for (unsigned short i = 0; i < 3; ++i) {
-        carp.Init();
         carps.push_back(carp);
     }
 
     Pike pike;
+    pike.Init();
     for (unsigned short i = 0; i < 3; ++i) {
-        pike.Init();
         pikes.push_back(pike);
     }
 
@@ -27,6 +27,38 @@ void Aquarium::Init() {
 
 void Aquarium::Run() {
     while (!WindowShouldClose()) {
+        if (IsKeyDown(KEY_L)) {
+            Carp* carp = new Carp[5000];
+            for (int i = 0; i < 5000; ++i) {
+                carp[i].Init();
+                carps.push_back(carp[i]);
+            }
+        }
+
+        if (IsKeyDown(KEY_A)) {
+            Carp carp;
+            carp.Init();
+            carps.push_back(carp);
+        }
+
+        if (IsKeyDown(KEY_D)) {
+            if (!carps.empty()) {
+                carps.pop_back();
+            }
+        }
+        
+        if (IsKeyDown(KEY_W)) {
+            Pike pike;
+            pike.Init();
+            pikes.push_back(pike);
+        }
+
+        if (IsKeyDown(KEY_S)) {
+            if (!pikes.empty()) {
+                pikes.pop_back();
+            }
+        }
+
         BeginDrawing();
         ClearBackground(SKYBLUE);
 
